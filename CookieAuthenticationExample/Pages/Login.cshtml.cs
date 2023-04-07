@@ -37,9 +37,8 @@ namespace CookieAuthenticationExample.Pages
 				//no login possible
 				return LocalRedirect(returnUrl);
 			}
-
-			//TODO check paramUserName & paramPassword in DB
 			
+			//todo get user roles from Database via UserService
 			var claims = new List<Claim>
 			{
 				new Claim(ClaimTypes.Name, paramUsername),
@@ -57,6 +56,7 @@ namespace CookieAuthenticationExample.Pages
 			}
 			catch (Exception ex)
 			{
+				//Todo add proper exception handling
 				string error = ex.Message;
 
 			}
