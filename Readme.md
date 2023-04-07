@@ -25,6 +25,19 @@ Prototype in Blazor Server with cookie authentication.
 - Login control shows username if successfully logged in
 
 
+
+## Screenshots
+
+Unauthorized View on FetchData:
+
+![Unauthorized](docs/FetchData_Unauthorized.png)
+
+After successful login:
+
+![Authorized](docs/FetchData_Authorized.png)
+
+
+
 ## Core Concepts
 
 ### Program.cs
@@ -130,3 +143,5 @@ Use Authentification for View
 <h1>Counter</h1>
 
 ```
+
+
