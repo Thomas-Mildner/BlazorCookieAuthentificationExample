@@ -1,8 +1,15 @@
 
 # Blazor Cookie Authentification Example
 
-Prototype in Blazor Server with cookie authentication.
 
+<img src="docs/CookieMonster.jpg"  width="10%" height="15%" style="float: left; margin-right: 10px !important">
+
+Prototype (Blazor Server) with cookie authentication.
+This prototype is only meant to show the functionality of cookie authentication and is a pure demo application. 
+This code should never be used in a productive environment without any modifications.
+In productive environments the UserService can be passed a database context and the users will be matched in the database.
+
+<br/><br/>
 
 ## Features
 
@@ -17,6 +24,7 @@ Prototype in Blazor Server with cookie authentication.
 - Weather forecast is protected if not authorized
 - Counter page is based on the claim "Admin" (does not exist! Dummy to show the functionality of the roles)
 - Login control shows username if successfully logged in
+- Sliding Expiration and logout after inactivity of 30 Seconds.
 
 
 
@@ -42,10 +50,12 @@ View encrypted Cookie:
 
 ```csharp
 
+builder.Services.AddScoped<UserService>();
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+        options.ExpireTimeSpan = TimeSpan.FromSeconds(30);
         options.SlidingExpiration = true;
         options.AccessDeniedPath = "/Forbidden";
         options.LoginPath = "/login";
@@ -68,7 +78,7 @@ app.UseAuthentication();
 
 ```csharp
 //use authorizedView and unauthorized View
-'Encrpypt' UserName & Password in query parameter
+//Encode UserName & Password for query parameter
 
 ```
 
