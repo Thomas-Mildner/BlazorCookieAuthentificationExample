@@ -11,7 +11,10 @@ namespace CookieAuthenticationExample.Pages
 	public class LoginModel : PageModel
 	{
         public async Task<IActionResult> OnGetAsync(string paramUsername, string paramPassword)
-		{
+        {
+            if (string.IsNullOrEmpty(paramUsername) || string.IsNullOrEmpty(paramPassword))
+                return LocalRedirect("/");
+
 			string returnUrl = Url.Content("~/");
 			try
 			{

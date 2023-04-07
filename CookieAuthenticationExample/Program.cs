@@ -11,10 +11,10 @@ builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+        options.ExpireTimeSpan = TimeSpan.FromSeconds(30);
         options.SlidingExpiration = true;
         options.AccessDeniedPath = "/Forbidden";
-        options.LoginPath = "/Home/Login";
+        options.LoginPath = "/login";
 
     });
 
