@@ -31,6 +31,10 @@ After successful login:
 ![Authorized](docs/FetchData_Authorized.png)
 
 
+View encrypted Cookie:
+
+![Authorized](docs/Cookie_LoggedIn.png)
+
 
 ## Core Concepts
 
