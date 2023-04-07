@@ -4,18 +4,12 @@
 Prototype in Blazor Server with cookie authentication.
 
 
-
-
-
-
-
-
-
 ## Features
 
 - Login Control displayed on every page
 - Login & Logout Functionality
 - Claim Management
+- After inactivity of 30 sec, user will be logged out automatically
 
 
 ## Demo
