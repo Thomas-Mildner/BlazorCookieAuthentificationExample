@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
+using CookieAuthenticationExample.Services;
 using Microsoft.AspNetCore.Authorization;
 
 namespace CookieAuthenticationExample.Pages
@@ -10,7 +11,14 @@ namespace CookieAuthenticationExample.Pages
 	[AllowAnonymous]
 	public class LoginModel : PageModel
 	{
-        public async Task<IActionResult> OnGetAsync(string paramUsername, string paramPassword)
+		private readonly UserService _userService;
+
+		public LoginModel(UserService userService)
+		{
+			_userService = userService;
+		}
+
+		public async Task<IActionResult> OnGetAsync(string paramUsername, string paramPassword)
         {
             if (string.IsNullOrEmpty(paramUsername) || string.IsNullOrEmpty(paramPassword))
                 return LocalRedirect("/");
@@ -23,6 +31,12 @@ namespace CookieAuthenticationExample.Pages
 			}
 			catch { }
 
+
+			if (!_userService.CheckDatabaseIfPasswordMatches(paramUsername, paramPassword))
+			{
+				//no login possible
+				return LocalRedirect(returnUrl);
+			}
 
 			//TODO check paramUserName & paramPassword in DB
 			
