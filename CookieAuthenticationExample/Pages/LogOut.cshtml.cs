@@ -1,3 +1,4 @@
+using CookieAuthenticationExample.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +13,7 @@ namespace CookieAuthenticationExample.Pages
 			// Clear the existing external cookie
 			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-			return LocalRedirect(Url.Content("~/"));
+			return LocalRedirect(NavigationPages.Home);
 		}
 	}
 }

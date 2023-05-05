@@ -2,6 +2,7 @@
 @using CookieAuthenticationExample.Data
 
 @using System.Security.Claims
+@using CookieAuthenticationExample.Models
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject WeatherForecastService ForecastService
 @inject NavigationManager NavigationManager
@@ -14,7 +15,7 @@
 
 <p>This component demonstrates fetching data from a service.</p>
 
-<button @onclick="() => Refresh()">Refresh</button>
+<button @onclick="Refresh">Refresh</button>
 
 @if (forecasts == null)
 {
@@ -68,16 +69,17 @@ else
         }
     }
 
-    private async Task Refresh()
+    private Task Refresh()
     {
-        NavigationManager.NavigateTo("/fetchdata", true);
+        NavigationManager.NavigateTo(NavigationPages.WeatherForecast, true);
+        return Task.CompletedTask;
     }
 
 
     protected override async Task OnInitializedAsync()
     {
         //dummy call to simulate claim user role check
-        GetClaimsPrincipalData();
+        await GetClaimsPrincipalData();
 
         forecasts = await ForecastService.GetForecastAsync(DateOnly.FromDateTime(DateTime.Now));
     }
