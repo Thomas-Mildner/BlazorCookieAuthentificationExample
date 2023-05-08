@@ -14,10 +14,17 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.ExpireTimeSpan = TimeSpan.FromSeconds(30);
+        options.ExpireTimeSpan = TimeSpan.FromSeconds(5);
         options.SlidingExpiration = true;
         options.AccessDeniedPath = "/Forbidden";
         options.LoginPath = "/login";
+
+        options.Cookie = new CookieBuilder()
+        {
+            SameSite = SameSiteMode.Lax,
+            SecurePolicy = CookieSecurePolicy.SameAsRequest,
+            HttpOnly = true,
+        };
 
     });
 

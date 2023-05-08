@@ -5,6 +5,8 @@
                 @*this gets displayed if the user is not authorized to view the page*@
                 <NotAuthorized>
                     <p>Sie sind nicht berechtigt, diese Seite aufzurufen.</p>
+                    
+                    <LoginControl></LoginControl>
                 </NotAuthorized>
             </AuthorizeRouteView>
             <FocusOnNavigate RouteData="@routeData" Selector="h1" />

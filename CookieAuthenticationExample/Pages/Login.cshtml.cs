@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
+using CookieAuthenticationExample.Models;
 using CookieAuthenticationExample.Services;
 using Microsoft.AspNetCore.Authorization;
 
@@ -21,9 +22,8 @@ namespace CookieAuthenticationExample.Pages
 		public async Task<IActionResult> OnGetAsync(string paramUsername, string paramPassword)
         {
             if (string.IsNullOrEmpty(paramUsername) || string.IsNullOrEmpty(paramPassword))
-                return LocalRedirect("/");
+                return LocalRedirect(NavigationPages.Home);
 
-			string returnUrl = Url.Content("~/");
 			try
 			{
 				// Clear the existing external cookie
@@ -35,7 +35,7 @@ namespace CookieAuthenticationExample.Pages
 			if (!_userService.CheckDatabaseIfPasswordMatches(paramUsername, paramPassword))
 			{
 				//no login possible
-				return LocalRedirect(returnUrl);
+				return LocalRedirect(NavigationPages.Home);
 			}
 			
 			//todo get user roles from Database via UserService
@@ -60,7 +60,7 @@ namespace CookieAuthenticationExample.Pages
 				string error = ex.Message;
 
 			}
-			return LocalRedirect(returnUrl);
+			return LocalRedirect(NavigationPages.Home);
 		}
 	}
 
