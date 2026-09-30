@@ -34,7 +34,7 @@ Unauthorized View on FetchData:
 
 ![Unauthorized](docs/FetchData_Unauthorized.png)
 
-After successful login:
+After successful login with User "Test" and Passwort: "test":
 
 ![Authorized](docs/FetchData_Authorized.png)
 

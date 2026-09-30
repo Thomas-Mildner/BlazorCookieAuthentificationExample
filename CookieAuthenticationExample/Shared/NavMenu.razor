@@ -1,7 +1,13 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">CookieAuthenticationExample</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+﻿<div class="top-row px-3 navbar navbar-dark">
+    <div class="container-fluid px-0">
+        <a class="navbar-brand text-truncate me-2 fs-6 fw-semibold" href="" title="CookieAuthenticationExample">
+            CookieAuth Example
+        </a>
+        <button class="navbar-toggler" 
+                type="button"
+                @onclick="ToggleNavMenu" 
+                aria-label="Toggle navigation"
+                aria-expanded="@(!collapseNavMenu)">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
